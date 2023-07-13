@@ -113,3 +113,11 @@ mlruns/
 outputs/
 random_forest_dir/
 multirun/
+
+# mlflow & wandb & data
+mlruns/
+wandb/
+outputs/
+artifacts/
+*.csv
+*.parquet

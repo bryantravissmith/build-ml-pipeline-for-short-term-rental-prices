@@ -1,0 +1,18 @@
+name: test_regression_model
+conda_env: conda.yml
+
+entry_points:
+  main:
+    parameters:
+
+      input_model:
+        description: ## ADD DESCRIPTION
+        type: string
+
+      test_data:
+        description: ## ADD DESCRIPTION
+        type: string
+
+
+    command: >-
+        python run.py  --input_model {input_model}  --test_data {test_data} 
