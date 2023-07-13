@@ -7,6 +7,7 @@ main:
   steps: all
 etl:
   sample: "sample1.csv"
+  preprocess_name: "preprocess_sample.csv"
   min_price: 10 # dollars
   max_price: 350 # dollars
 data_check:

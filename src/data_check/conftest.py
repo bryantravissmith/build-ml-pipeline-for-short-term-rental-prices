@@ -1,5 +1,9 @@
 import pytest
 import pandas as pd
+
+import os
+os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = "python"
+
 import wandb
 
 

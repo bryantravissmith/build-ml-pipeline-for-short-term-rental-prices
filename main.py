@@ -62,7 +62,7 @@ def go(config: DictConfig):
                 "main",
                 parameters={
                     "input_artifact": f"{config['main']['project_name']}/sample.csv:latest" ,
-                    "artifact_name": "preprocess_sample.csv",
+                    "artifact_name": config['etl']['preprocess_name'],
                     "artifact_type": "raw_data",
                     "artifact_description": "preprocessed data",
                     "min_price": config["etl"]["min_price"],
@@ -72,9 +72,19 @@ def go(config: DictConfig):
 
         if "data_check" in active_steps:
             ##################
-            # Implement here #
+            # data check #
             ##################
-            pass
+            _ = mlflow.run(
+            os.path.join(src_path, "data_check"),
+                "main",
+                parameters={
+                    "ref": f"{config['main']['project_name']}/{config['etl']['preprocess_name']}:reference",
+                    "csv": f"{config['main']['project_name']}/{config['etl']['preprocess_name']}:latest",
+                    "kl_threshold": config["data_check"]["kl_threshold"],
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
+                },
+            )
 
         if "data_split" in active_steps:
             ##################
